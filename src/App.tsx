@@ -1,26 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import AddTodo from "./Components/AddTodo";
+import TodoList from "./Components/TodoList";
+import { VStack, Heading, IconButton, useColorMode } from "@chakra-ui/react";
+import { FaSun, FaMoon } from "react-icons/fa";
+import { TodosProvider } from "./Helpers/todoContext";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const { colorMode, toggleColorMode } = useColorMode();
+	return (
+		<TodosProvider>
+			<VStack p={6}>
+				<IconButton
+					aria-label='Change Color Mode'
+					icon={colorMode === "light" ? <FaSun /> : <FaMoon />}
+					isRound={true}
+					size='lg'
+					alignSelf='flex-end'
+					onClick={toggleColorMode}
+				/>
+				<Heading
+					fontWeight='extrabold'
+					bgGradient='linear(to-r, yellow.500, yellow.300, green.500)'
+					bgClip='text'
+					size='2xl'>
+					Todo Application
+				</Heading>
+				<TodoList />
+				<AddTodo />
+			</VStack>
+		</TodosProvider>
+	);
 }
 
 export default App;

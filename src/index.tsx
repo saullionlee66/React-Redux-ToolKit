@@ -3,12 +3,28 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {
+	ChakraProvider,
+	ColorModeScript,
+	extendTheme,
+	ThemeConfig,
+} from "@chakra-ui/react";
+
+const config: ThemeConfig = {
+	initialColorMode: "light",
+	useSystemColorMode: true,
+};
+
+const theme = extendTheme({ config });
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+	<React.StrictMode>
+		<ChakraProvider>
+			<ColorModeScript initialColorMode={theme.config.initialColorMode} />
+			<App />
+		</ChakraProvider>
+	</React.StrictMode>,
+	document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function
