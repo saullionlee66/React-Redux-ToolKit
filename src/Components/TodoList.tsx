@@ -8,6 +8,16 @@ import {
 	StackDivider,
 	Spacer,
 	Badge,
+	Popover,
+	Button,
+	PopoverBody,
+	PopoverCloseButton,
+	PopoverHeader,
+	PopoverContent,
+	PopoverArrow,
+	PopoverTrigger,
+	Portal,
+	Tooltip,
 } from "@chakra-ui/react";
 import { FaTrash, FaToggleOff } from "react-icons/fa";
 function TodoList() {
@@ -50,23 +60,47 @@ function TodoList() {
 							value={todo.content}
 						/>
 						<Spacer />
-						<IconButton
-							aria-label='done Sign'
-							icon={<FaToggleOff />}
-							isRound={true}
-							size='lg'
-							onClick={() => setTodos(() => toggleTodo(todos, todo.id))}
-						/>
+						<Tooltip
+							hasArrow
+							label='Finished'
+							borderRadius='lg'
+							bg='gray.300'
+							fontSize='lx'>
+							<IconButton
+								aria-label='done Sign'
+								icon={<FaToggleOff />}
+								isRound={true}
+								size='lg'
+								onClick={() => setTodos(() => toggleTodo(todos, todo.id))}
+							/>
+						</Tooltip>
 
-						<IconButton
-							aria-label='Delete Sign'
-							icon={<FaTrash />}
-							isRound={true}
-							size='lg'
-							onClick={() => {
-								setTodos(() => removeTodo(todos, todo.id));
-							}}
-						/>
+						<Popover placement='right-end'>
+							<PopoverTrigger>
+								<IconButton
+									aria-label='Delete Sign'
+									icon={<FaTrash />}
+									isRound={true}
+									size='lg'
+								/>
+							</PopoverTrigger>
+							<Portal>
+								<PopoverContent>
+									<PopoverArrow />
+									<PopoverHeader>Are you sure?</PopoverHeader>
+									<PopoverCloseButton />
+									<PopoverBody>
+										<Button
+											colorScheme='blue'
+											onClick={() => {
+												setTodos(() => removeTodo(todos, todo.id));
+											}}>
+											Delete
+										</Button>
+									</PopoverBody>
+								</PopoverContent>
+							</Portal>
+						</Popover>
 					</HStack>
 				))}
 		</VStack>

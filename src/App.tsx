@@ -9,7 +9,7 @@ function App() {
 	const { colorMode, toggleColorMode } = useColorMode();
 	return (
 		<TodosProvider>
-			<VStack p={6}>
+			<VStack p={4}>
 				<IconButton
 					aria-label='Change Color Mode'
 					icon={colorMode === "light" ? <FaSun /> : <FaMoon />}
@@ -17,8 +17,10 @@ function App() {
 					size='lg'
 					alignSelf='flex-end'
 					onClick={toggleColorMode}
+					mb='10'
 				/>
 				<Heading
+					p='8'
 					fontWeight='extrabold'
 					bgGradient='linear(to-r, yellow.500, yellow.300, green.500)'
 					bgClip='text'
@@ -27,7 +29,7 @@ function App() {
 				</Heading>
 				<TodoList />
 				<AddTodo />
-				<Heading fontWeight='bold' color='yellow.500' size='xl'>
+				<Heading p='8' fontWeight='bold' color='yellow.500' size='xl'>
 					Done List
 				</Heading>
 				<DoneList />

@@ -1,4 +1,4 @@
-# React + TypeScript + Chakra UI
+# React(useContext)+ TypeScript + Chakra UI
 ## 1. Theme can be One-Click between light and dark mode
 ## 2. Responsive for different sizes of screens
 ## 3. Todos can be toggled between finished and unfinished in two lists
@@ -6,6 +6,7 @@
 ## 5. Todos can be deleted
 ## 6. When submitting nothing, a badge will be shown with error message.
 ## 7. The badge will be shown for 2 second and can be closed manually.
+## 8. Tooltips and Popover features applied.
 
 # Getting Started with Create React App
 
