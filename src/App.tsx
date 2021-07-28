@@ -3,6 +3,7 @@ import TodoList from "./Components/TodoList";
 import { VStack, Heading, IconButton, useColorMode } from "@chakra-ui/react";
 import { FaSun, FaMoon } from "react-icons/fa";
 import { TodosProvider } from "./Helpers/todoContext";
+import DoneList from "./Components/DoneList";
 
 function App() {
 	const { colorMode, toggleColorMode } = useColorMode();
@@ -26,6 +27,10 @@ function App() {
 				</Heading>
 				<TodoList />
 				<AddTodo />
+				<Heading fontWeight='bold' color='yellow.500' size='xl'>
+					Done List
+				</Heading>
+				<DoneList />
 			</VStack>
 		</TodosProvider>
 	);

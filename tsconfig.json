@@ -22,5 +22,5 @@
   },
   "include": [
     "src"
-  ]
+, "../git-practice/Person.tsx"  ]
 }

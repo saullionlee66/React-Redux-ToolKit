@@ -1,4 +1,3 @@
-import React from "react";
 import { removeTodo, toggleTodo, updateTodo } from "../store";
 import { useTodosContext } from "../Helpers/todoContext";
 import {
@@ -8,14 +7,14 @@ import {
 	IconButton,
 	StackDivider,
 	Spacer,
-	Checkbox,
 	Badge,
 } from "@chakra-ui/react";
-import { FaTrash } from "react-icons/fa";
-
+import { FaTrash, FaToggleOff } from "react-icons/fa";
 function TodoList() {
 	const [todos, setTodos] = useTodosContext();
-	if (!todos.length) {
+	console.log(todos);
+
+	if (todos.every((todo) => todo.done === true)) {
 		return (
 			<Badge
 				p='5'
@@ -38,33 +37,38 @@ function TodoList() {
 			w='100%'
 			maxW={{ base: "90vw", sm: "80vw", lg: "50vw", xl: "40vw" }}
 			alignItems='stretch'>
-			{todos.map((todo) => (
-				<HStack key={todo.id}>
-					<Checkbox
-						size='lg'
-						checked={todo.done}
-						onClick={() => setTodos(() => toggleTodo(todos, todo.id))}
-					/>
-					<Input
-						size='lg'
-						variant='unstyled'
-						onChange={(e) =>
-							setTodos(() => updateTodo(todos, todo.id, e.target.value))
-						}
-						value={todo.content}
-					/>
-					<Spacer />
-					<IconButton
-						aria-label='Delete Sign'
-						icon={<FaTrash />}
-						isRound={true}
-						size='lg'
-						onClick={() => {
-							setTodos(() => removeTodo(todos, todo.id));
-						}}
-					/>
-				</HStack>
-			))}
+			{todos
+				.filter((todo) => todo.done === false)
+				.map((todo) => (
+					<HStack key={todo.id}>
+						<Input
+							size='lg'
+							variant='unstyled'
+							onChange={(e) =>
+								setTodos(() => updateTodo(todos, todo.id, e.target.value))
+							}
+							value={todo.content}
+						/>
+						<Spacer />
+						<IconButton
+							aria-label='done Sign'
+							icon={<FaToggleOff />}
+							isRound={true}
+							size='lg'
+							onClick={() => setTodos(() => toggleTodo(todos, todo.id))}
+						/>
+
+						<IconButton
+							aria-label='Delete Sign'
+							icon={<FaTrash />}
+							isRound={true}
+							size='lg'
+							onClick={() => {
+								setTodos(() => removeTodo(todos, todo.id));
+							}}
+						/>
+					</HStack>
+				))}
 		</VStack>
 	);
 }
