@@ -1,4 +1,4 @@
-# React(useContext)+ TypeScript + Chakra UI
+# React(Redux ToolKit)+ TypeScript + Chakra UI
 ## 1. Theme can be One-Click between light and dark mode
 ## 2. Responsive for different sizes of screens
 ## 3. Todos can be toggled between finished and unfinished in two lists
@@ -55,3 +55,4 @@ You can learn more in the [Create React App documentation](https://facebook.gith
 
 To learn React, check out the [React documentation](https://reactjs.org/).
 # React-TypeScript-Todo-App
+# React-Redux-ToolKit

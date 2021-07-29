@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { HStack, Input, Button, useToast } from "@chakra-ui/react";
-import { addTodo } from "../store";
-import { useTodosContext } from "../Helpers/todoContext";
+import { addTodo } from "../Store/todoSlice";
+import { selectTodos } from "../Store/store";
+import { useSelector, useDispatch } from "react-redux";
 function AddTodo() {
-	const [todos, setTodos] = useTodosContext();
+	const todos = useSelector(selectTodos);
+	const dispatch = useDispatch();
 	const [newTodo, setNewTodo] = useState<string>("");
 	const toast = useToast();
 	useEffect(() => {
@@ -21,7 +23,7 @@ function AddTodo() {
 			});
 			return;
 		}
-		setTodos(addTodo(todos, newTodo));
+		dispatch(addTodo(newTodo));
 		setNewTodo("");
 	}
 	return (

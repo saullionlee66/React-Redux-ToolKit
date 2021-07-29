@@ -1,6 +1,6 @@
-import React from "react";
-import { useTodosContext } from "../Helpers/todoContext";
-import { removeTodo, toggleTodo } from "../store";
+import { selectTodos } from "../Store/store";
+import { toggleTodo, deleteTodo } from "../Store/todoSlice";
+import { useSelector, useDispatch } from "react-redux";
 import {
 	VStack,
 	HStack,
@@ -24,7 +24,8 @@ import {
 import { FaTrash, FaToggleOn } from "react-icons/fa";
 
 function DoneList() {
-	const [todos, setTodos] = useTodosContext();
+	const todos = useSelector(selectTodos);
+	const dispatch = useDispatch();
 	if (todos.every((todo) => todo.done === false)) {
 		return (
 			<Badge
@@ -55,9 +56,10 @@ function DoneList() {
 							<Text as='s'>{todo.content}</Text>
 							<Spacer />
 							<Tooltip
+								placement='auto-start'
 								hasArrow
 								label='Not Finished'
-								bg='gray.300'
+								bg='gray.400'
 								borderRadius='lg'
 								fontSize='lx'>
 								<IconButton
@@ -65,7 +67,7 @@ function DoneList() {
 									icon={<FaToggleOn />}
 									isRound={true}
 									size='lg'
-									onClick={() => setTodos(() => toggleTodo(todos, todo.id))}
+									onClick={() => dispatch(toggleTodo(todo.id))}
 								/>
 							</Tooltip>
 
@@ -86,9 +88,7 @@ function DoneList() {
 										<PopoverBody>
 											<Button
 												colorScheme='blue'
-												onClick={() => {
-													setTodos(() => removeTodo(todos, todo.id));
-												}}>
+												onClick={() => dispatch(deleteTodo(todo.id))}>
 												Delete
 											</Button>
 										</PopoverBody>

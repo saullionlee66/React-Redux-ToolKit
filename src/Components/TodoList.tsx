@@ -1,5 +1,6 @@
-import { removeTodo, toggleTodo, updateTodo } from "../store";
-import { useTodosContext } from "../Helpers/todoContext";
+import { useSelector, useDispatch } from "react-redux";
+import { selectTodos } from "../Store/store";
+import { toggleTodo, updateTodo, deleteTodo, Todo } from "../Store/todoSlice";
 import {
 	VStack,
 	HStack,
@@ -20,11 +21,21 @@ import {
 	Tooltip,
 } from "@chakra-ui/react";
 import { FaTrash, FaToggleOff } from "react-icons/fa";
+import React from "react";
 function TodoList() {
-	const [todos, setTodos] = useTodosContext();
-	console.log(todos);
+	const todos = useSelector(selectTodos);
 
-	if (todos.every((todo) => todo.done === true)) {
+	const dispatch = useDispatch();
+
+	const handleUpdate = (e: React.ChangeEvent<HTMLInputElement>, id: number) => {
+		const newtodo = {
+			id: id,
+			content: e.target.value,
+			done: false,
+		};
+		dispatch(updateTodo(newtodo));
+	};
+	if (todos.every((todo: Todo) => todo.done === true)) {
 		return (
 			<Badge
 				p='5'
@@ -54,24 +65,23 @@ function TodoList() {
 						<Input
 							size='lg'
 							variant='unstyled'
-							onChange={(e) =>
-								setTodos(() => updateTodo(todos, todo.id, e.target.value))
-							}
+							onChange={(e) => handleUpdate(e, todo.id)}
 							value={todo.content}
 						/>
 						<Spacer />
 						<Tooltip
+							placement='auto-start'
 							hasArrow
 							label='Finished'
 							borderRadius='lg'
-							bg='gray.300'
+							bg='gray.400'
 							fontSize='lx'>
 							<IconButton
 								aria-label='done Sign'
 								icon={<FaToggleOff />}
 								isRound={true}
 								size='lg'
-								onClick={() => setTodos(() => toggleTodo(todos, todo.id))}
+								onClick={() => dispatch(toggleTodo(todo.id))}
 							/>
 						</Tooltip>
 
@@ -92,9 +102,7 @@ function TodoList() {
 									<PopoverBody>
 										<Button
 											colorScheme='blue'
-											onClick={() => {
-												setTodos(() => removeTodo(todos, todo.id));
-											}}>
+											onClick={() => dispatch(deleteTodo(todo.id))}>
 											Delete
 										</Button>
 									</PopoverBody>
