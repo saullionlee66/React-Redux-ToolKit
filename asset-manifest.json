@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/React-Redux-ToolKit/static/css/main.6dea0f05.chunk.css",
+    "main.js": "/React-Redux-ToolKit/static/js/main.681f8552.chunk.js",
+    "main.js.map": "/React-Redux-ToolKit/static/js/main.681f8552.chunk.js.map",
+    "runtime-main.js": "/React-Redux-ToolKit/static/js/runtime-main.2c9282a2.js",
+    "runtime-main.js.map": "/React-Redux-ToolKit/static/js/runtime-main.2c9282a2.js.map",
+    "static/js/2.77f0c7fd.chunk.js": "/React-Redux-ToolKit/static/js/2.77f0c7fd.chunk.js",
+    "static/js/2.77f0c7fd.chunk.js.map": "/React-Redux-ToolKit/static/js/2.77f0c7fd.chunk.js.map",
+    "static/js/3.ff899386.chunk.js": "/React-Redux-ToolKit/static/js/3.ff899386.chunk.js",
+    "static/js/3.ff899386.chunk.js.map": "/React-Redux-ToolKit/static/js/3.ff899386.chunk.js.map",
+    "index.html": "/React-Redux-ToolKit/index.html",
+    "static/css/main.6dea0f05.chunk.css.map": "/React-Redux-ToolKit/static/css/main.6dea0f05.chunk.css.map",
+    "static/js/2.77f0c7fd.chunk.js.LICENSE.txt": "/React-Redux-ToolKit/static/js/2.77f0c7fd.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.2c9282a2.js",
+    "static/js/2.77f0c7fd.chunk.js",
+    "static/css/main.6dea0f05.chunk.css",
+    "static/js/main.681f8552.chunk.js"
+  ]
+}
