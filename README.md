@@ -7,6 +7,8 @@
 ## 6. When submitting nothing, a badge will be shown with error message.
 ## 7. The badge will be shown for 2 second and can be closed manually.
 ## 8. Tooltips and Popover features applied.
+## 9. This App has been deployed at GitHub Pages: 
+https://saullionlee66.github.io/React-Redux-ToolKit/
 
 # Getting Started with Create React App
 
